@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle मोक्ष Pro - MoRTH Framework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        /* Front Page Styles */
+        .front-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .front-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+        }
+        
+        .software-title {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .morth-subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .version-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .objective-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #28a745;
+        }
+        
+        .objective-section h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .objective-text {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #495057;
+        }
+        
+        .form-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-card h3 {
+            color: #4a90e2;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .developer-section {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(238, 90, 82, 0.3);
+        }
+        
+        .developer-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .developer-section p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .csir-logo {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .proceed-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        
+        .vehicle-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .vehicle-icon:hover {
+            transform: translateY(-10px) scale(1.1);
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        .proceed-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .proceed-subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        /* Assessment Page Styles */
+        .assessment-page {
+            display: none;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            padding: 30px;
+        }
+        
+        .rating-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .score-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .score-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .score-display {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .star-rating {
+            font-size: 1.5em;
+            color: #ffd700;
+            margin-top: 10px;
+        }
+        
+        .section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .section-header:hover {
+            background: linear-gradient(45deg, #20c997, #28a745);
+        }
+        
+        .section-header h2 {
+            font-size: 1.3em;
+        }
+        
+        .expand-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+        
+        .section-content {
+            padding: 20px;
+            display: none;
+        }
+        
+        .section-content.active {
+            display: block;
+        }
+        
+        .subsection {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .subsection h4 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .assessment-form-group {
+            margin-bottom: 15px;
+        }
+        
+        .assessment-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .assessment-form-group select, .assessment-form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .assessment-form-group select:focus, .assessment-form-group input:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+        
+        .assessment-form-group.required label::after {
+            content: " *";
+            color: #dc3545;
+        }
+        
+        .assessment-form-group.error select, .assessment-form-group.error input {
+            border-color: #dc3545;
+            background-color: #fff5f5;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+            width: auto;
+        }
+        
+        .checkbox-item label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        
+        .table-section {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        .data-table th, .data-table td {
+            border: 1px solid #dee2e6;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        
+        .data-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .data-table select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .calculate-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(238, 90, 82, 0.3);
+        }
+        
+        .download-btn, .print-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+        }
+        
+        .download-btn:hover, .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+        }
+        
+        .download-btn.show, .print-btn.show {
+            display: inline-block;
+        }
+        
+        .result-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .result-panel.show {
+            display: block;
+        }
+        
+        .final-score {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .final-rating {
+            font-size: 2.5em;
+            color: #ffd700;
+            margin: 20px 0;
+        }
+        
+        .breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .breakdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .back-btn {
+            background: linear-gradient(45deg, #6c757d, #495057);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(108, 117, 125, 0.3);
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .action-buttons, .back-btn {
+                display: none;
+            }
+            
+            .section-header {
+                background: #333 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .result-panel {
+                background: #333 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            .score-card {
+                background: #333 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .software-title {
+                font-size: 2.5em;
+            }
+            
+            .form-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .front-page {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Front Page -->
+        <div class="front-page" id="frontPage">
+            <div class="front-header">
+                <div class="software-title">Vehicle मोक्ष Pro</div>
+                <div class="morth-subtitle">Ministry of Road Transport and Highways (MoRTH) Framework</div>
+                <div class="version-tag">Professional Assessment Tool v2.0</div>
+            </div>
+            
+            <div class="objective-section">
+                <h2>🎯 Objective</h2>
+                <div class="objective-text">
+                    Vehicle मोक्ष Pro is a comprehensive assessment and rating tool designed to evaluate Registered Vehicle Scrapping Facilities (RVSF) 
+                    in accordance with the Ministry of Road Transport and Highways (MoRTH) framework. This tool helps ensure environmental compliance, 
+                    operational efficiency, and adherence to End-of-Life Vehicle (ELV) guidelines for sustainable vehicle scrapping and recycling processes.
+                    <br><br>
+                    The system evaluates facilities across multiple parameters including machinery assets, ELV compliance, facility conditions, 
+                    audit completion status, and customer interface quality to provide a standardized rating mechanism.
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="form-card">
+                    <h3>🏢 Auditor Agency Details</h3>
+                    <div class="form-group">
+                        <label for="auditorName">Agency Name</label>
+                        <input type="text" id="auditorName" placeholder="Enter auditor agency name">
+                    </div>
+                    <div class="form-group">
+                        <label for="auditorLicense">License/Accreditation Number</label>
+                        <input type="text" id="auditorLicense" placeholder="Enter license number">
+                    </div>
+                    <div class="form-group">
+                        <label for="auditorContact">Contact Person</label>
+                        <input type="text" id="auditorContact" placeholder="Enter contact person name">
+                    </div>
+                    <div class="form-group">
+                        <label for="auditorEmail">Email Address</label>
+                        <input type="email" id="auditorEmail" placeholder="Enter email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="auditorPhone">Phone Number</label>
+                        <input type="tel" id="auditorPhone" placeholder="Enter phone number">
+                    </div>
+                </div>
+                
+                <div class="form-card">
+                    <h3>🏭 Auditee (RVSF) Details</h3>
+                    <div class="form-group">
+                        <label for="auditeeName">Facility Name</label>
+                        <input type="text" id="auditeeName" placeholder="Enter RVSF facility name">
+                    </div>
+                    <div class="form-group">
+                        <label for="auditeeRegNo">Registration Number</label>
+                        <input type="text" id="auditeeRegNo" placeholder="Enter registration number">
+                    </div>
+                    <div class="form-group">
+                        <label for="auditeeAddress">Address</label>
+                        <textarea id="auditeeAddress" placeholder="Enter complete facility address"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="auditeeContact">Contact Person</label>
+                        <input type="text" id="auditeeContact" placeholder="Enter facility contact person">
+                    </div>
+                    <div class="form-group">
+                        <label for="auditYear">Year of Audit</label>
+                        <select id="auditYear">
+                            <option value="">Select Year</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="developer-section">
+                <h3>🔬 Developed By</h3>
+                <div class="csir-logo">CSIR - Indian Institute of Petroleum</div>
+                <p>Dehradun, Uttarakhand, India</p>
+                <p>A Premier Research Institute under Council of Scientific & Industrial Research</p>
+            </div>
+            
+            <div class="proceed-section">
+                <div class="vehicle-icon" onclick="proceedToAssessment()">🚗</div>
+                <div class="proceed-text">Let's Go!</div>
+                <div class="proceed-subtitle">Click the vehicle icon to start the assessment</div>
+            </div>
+        </div>
+        
+        <!-- Assessment Page -->
+        <div class="assessment-page" id="assessmentPage">
+            <button class="back-btn" onclick="goBackToFront()">← Back to Front Page</button>
+            
+            <div class="header">
+                <h1>Vehicle मोक्ष Pro</h1>
+                <p>RVSF Assessment & Rating</p>
+            </div>
+            
+            <div class="main-content">
+                <div class="rating-summary">
+                    <div class="score-card">
+                        <h3>Machinery Assets</h3>
+                        <div class="score-display" id="machineryScore">0/10</div>
+                    </div>
+                    <div class="score-card">
+                        <h3>ELV Guidelines</h3>
+                        <div class="score-display" id="elvScore">0/15</div>
+                    </div>
+                    <div class="score-card">
+                        <h3>CD & CVS Gaps</h3>
+                        <div class="score-display" id="cdcvsScore">0/20</div>
+                    </div>
+                    <div class="score-card">
+                        <h3>Mass Flow</h3>
+                        <div class="score-display" id="massFlowScore">0/10</div>
+                    </div>
+                    <div class="score-card">
+                        <h3>Facility Condition</h3>
+                        <div class="score-display" id="facilityScore">0/5</div>
+                    </div>
+                    <div class="score-card">
+                        <h3>Total Score</h3>
+                        <div class="score-display" id="totalScore">0/100</div>
+                        <div class="star-rating" id="starRating">☆☆☆☆☆</div>
+                    </div>
+                </div>
+                
+                <!-- Section 1: Machinery Assets (10 Points) -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>1. Machinery Assets (10 Points)</h2>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="subsection">
+                            <h4>Machinery Assets (5 Points)</h4>
+                            <div class="checkbox-grid">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m1" name="machinery">
+                                    <label for="m1">1. Bailing press</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m2" name="machinery">
+                                    <label for="m2">2. Depolluting system</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m2a" name="machinery">
+                                    <label for="m2a">2a. Hydraulic Lift</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m2b" name="machinery">
+                                    <label for="m2b">2b. Oil Pump</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m2c" name="machinery">
+                                    <label for="m2c">2c. Oil/Lubricant/other Fluid Separator Tanks</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m2d" name="machinery">
+                                    <label for="m2d">2d. LPG/CNG Burners</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m3" name="machinery">
+                                    <label for="m3">3. AC gas Recovery unit</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m4" name="machinery">
+                                    <label for="m4">4. Material handling machines - Cranes/Forklift</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m5" name="machinery">
+                                    <label for="m5">5. Radiation Detection System</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m6" name="machinery">
+                                    <label for="m6">6. Shredder</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m7" name="machinery">
+                                    <label for="m7">7. Tilting Machine</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m8" name="machinery">
+                                    <label for="m8">8. Weighbridge</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m9" name="machinery">
+                                    <label for="m9">9. Drum Magnets</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m10" name="machinery">
+                                    <label for="m10">10. Eddy Current Separators</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m11" name="machinery">
+                                    <label for="m11">11. Magnetic Separators</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m12" name="machinery">
+                                    <label for="m12">12. Auto Shear Machine for cutting catalytic converter</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m13" name="machinery">
+                                    <label for="m13">13. Air Bag deployment unit</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m14" name="machinery">
+                                    <label for="m14">14. Filter wrench/oil filter Removal Tool</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m15" name="machinery">
+                                    <label for="m15">15. Wheel popper</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m16" name="machinery">
+                                    <label for="m16">16. Piercing equipment for damper oil</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m17" name="machinery">
+                                    <label for="m17">17. Pneumatic saw</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m18" name="machinery">
+                                    <label for="m18">18. Portable power tool</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m19" name="machinery">
+                                    <label for="m19">19. Draining Tray</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m20" name="machinery">
+                                    <label for="m20">20. Pry/bar/Spanner/Ratchet/Mallet</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m21" name="machinery">
+                                    <label for="m21">21. Screwdriver/Slot screwdriver/Impact screwdriver</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m22" name="machinery">
+                                    <label for="m22">22. Cutter/cutting pliers/Special plier</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m23" name="machinery">
+                                    <label for="m23">23. Center Punch & bag</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m24" name="machinery">
+                                    <label for="m24">24. Windshield removal tool</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="m25" name="machinery">
+                                    <label for="m25">25. Pneumatic air gun</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h4>Non-Machinery Assets (5 Points)</h4>
+                            <div class="checkbox-grid">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="nm1" name="nonMachinery">
+                                    <label for="nm1">1. Safety and occupational health equipment</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="nm2" name="nonMachinery">
+                                    <label for="nm2">2. Fire protection system</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="nm3" name="nonMachinery">
+                                    <label for="nm3">3. Material handling equipment for safe transportation</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="nm4" name="nonMachinery">
+                                    <label for="nm4">4. Industrial grade lighting and ventilation systems</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="nm5" name="nonMachinery">
+                                    <label for="nm5">5. Effluent treatment plants or water recycling plants</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="nm6" name="nonMachinery">
+                                    <label for="nm6">6. Certified standard storage containers</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="nm7" name="nonMachinery">
+                                    <label for="nm7">7. Certification of de-polluting equipment</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 2: ELV Guidelines Compliance (15 Points) -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>2. ELV Guidelines Compliance (15 Points)</h2>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="subsection">
+                            <h4>Stages of Environmentally Sound Management of ELV (5 Points)</h4>
+                            <div class="table-section">
+                                <table class="data-table">
+                                    <tr>
+                                        <th>Stage</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1. De-pollution</td>
+                                        <td>Removal of pollutants<br>- Used/waste oils/Coolant/Refrigerant/Brake shoes<br>- Other hazardous material</td>
+                                        <td><select id="stage1"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2. Dismantling</td>
+                                        <td>Removal of parts/Material for re-use/re-manufacture/recycling/recovery<br>- Engine/gear system/chassis/wheels/tyres/fluids/other spares/material</td>
+                                        <td><select id="stage2"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3. Shredding</td>
+                                        <td>Heavy and light fraction</td>
+                                        <td><select id="stage3"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4. Baler (for Hulk)</td>
+                                        <td>Car hulk to be sent to baler unit in case shredder doesn't exist</td>
+                                        <td><select id="stage4"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5. Classifiers</td>
+                                        <td>Air/Eddie current/Laser/Infrared separation system</td>
+                                        <td><select id="stage5"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6. ASR (Heavy + Light)</td>
+                                        <td>Ferrous and non-ferrous material to be separated</td>
+                                        <td><select id="stage6"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7. Non utilizable residue</td>
+                                        <td>To be sent to secured landfill at TSDF</td>
+                                        <td><select id="stage7"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h4>Guidelines to RVSFs for Handling of ELVs (5 Points)</h4>
+                            <div class="checkbox-grid">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="guide1" name="guidelines">
+                                    <label for="guide1">1. Suitable earmarked area for parking, scrapping yard operations and storage of scraps</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="guide2" name="guidelines">
+                                    <label for="guide2">2. Parking of ELVs on non-permeable asphalt or concrete or epoxy coated flooring</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="guide3" name="guidelines">
+                                    <label for="guide3">3. Certified de-polluting equipment to ensure zero leakage</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="guide4" name="guidelines">
+                                    <label for="guide4">4. Dismantling equipment & designated areas for storing segregated scrap</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="guide5" name="guidelines">
+                                    <label for="guide5">5. Adequate space for storage and handling of segregated spares</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="guide6" name="guidelines">
+                                    <label for="guide6">6. Designated space for temporary storage of automotive hazardous waste</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="guide7" name="guidelines">
+                                    <label for="guide7">7. Safety and occupational health equipment</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="guide8" name="guidelines">
+                                    <label for="guide8">8. Appropriate Industrial grade lighting and ventilation systems</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="guide9" name="guidelines">
+                                    <label for="guide9">9. Appropriate effluent treatment plants or water recycling plants</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="subsection">
+                            <h4>Management of Wastes Generated During De-pollution & Dismantling (5 Points)</h4>
+                            <div class="table-section">
+                                <table class="data-table">
+                                    <tr>
+                                        <th>Vehicle Part</th>
+                                        <th>Management</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1. Engine</td>
+                                        <td>Drilling of 6 inch hole in the casing to make it non-reusable, thereafter recovery of metal</td>
+                                        <td><select id="waste1"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2. Used/Waste Oils</td>
+                                        <td>Recycling</td>
+                                        <td><select id="waste2"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3. Transmission oils, Brake Fluids & cleaners and used filters</td>
+                                        <td>Disposal and Energy recovery</td>
+                                        <td><select id="waste3"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4. Refrigerant gases</td>
+                                        <td>Disposal through incinerator</td>
+                                        <td><select id="waste4"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5. Automotive/E-Vehicle batteries, Air filter, Oil Filter, Rubber parts, Glass parts, Seat belt assemblies, CNG Kits</td>
+                                        <td>Recycling</td>
+                                        <td><select id="waste5"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6. Mercury containing switch, Brake shoe clutch plate plates/discs</td>
+                                        <td>Disposal through TSDF</td>
+                                        <td><select id="waste6"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7. Catalyst, Seats</td>
+                                        <td>Recycling/Utilization</td>
+                                        <td><select id="waste7"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8. Tyres</td>
+                                        <td>To be processed for production/recovery of carbon black, crumb rubber etc.</td>
+                                        <td><select id="waste8"><option value="">Select</option><option value="1">Yes</option><option value="0">No</option></select></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 3: Score for CD & CVS Gap (20 Points) -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>3. Score for CD & CVS Gap (20 Points)</h2>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="subsection">
+                            <h4>CD Gap and CVS Gap Assessment</h4>
+                            <div class="assessment-form-group required">
+                                <label>CD Gap (%)</label>
+                                <input type="number" id="cdGap" min="0" max="100" step="0.1" placeholder="Enter CD gap percentage">
+                                <div class="error-message">Please enter CD gap percentage</div>
+                            </div>
+                            
+                            <div class="assessment-form-group required">
+                                <label>CVS Gap (%)</label>
+                                <input type="number" id="cvsGap" min="0" max="100" step="0.1" placeholder="Enter CVS gap percentage">
+                                <div class="error-message">Please enter CVS gap percentage</div>
+                            </div>
+                            
+                            <div class="table-section">
+                                <h5>Scoring Matrix:</h5>
+                                <table class="data-table">
+                                    <tr>
+                                        <th>CD Gap / CVS Gap</th>
+                                        <th>&lt;10%</th>
+                                        <th>10%-20%</th>
+                                        <th>≥20%</th>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;10%</td>
+                                        <td>20</td>
+                                        <td>15</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10%-20%</td>
+                                        <td>15</td>
+                                        <td>10</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>≥20%</td>
+                                        <td>10</td>
+                                        <td>5</td>
+                                        <td>0</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 4: Mass Flow Statement Gaps (10 Points) -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>4. Mass Flow Statement Gaps (10 Points)</h2>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="subsection">
+                            <h4>Inflow-Outflow Gap Assessment</h4>
+                            <div class="assessment-form-group required">
+                                <label>Inflow-Outflow Gap (%)</label>
+                                <input type="number" id="massFlowGap" min="0" max="100" step="0.1" placeholder="Enter mass flow gap percentage">
+                                <div class="error-message">Please enter mass flow gap percentage</div>
+                            </div>
+                            
+                            <div class="table-section">
+                                <h5>Scoring:</h5>
+                                <table class="data-table">
+                                    <tr>
+                                        <th>Inflow-Outflow Gap</th>
+                                        <th>Score</th>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;30%</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>30%-50%</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>≥50%</td>
+                                        <td>0</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 5: Facility Condition (5 Points) -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>5. Facility Condition (5 Points)</h2>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="subsection">
+                            <h4>Infrastructure Assessment</h4>
+                            <div class="assessment-form-group required">
+                                <label>Ground Permeability (2.5 Points)</label>
+                                <select id="groundPermeability">
+                                    <option value="">Select Status</option>
+                                    <option value="2.5">Non-permeable flooring (2.5 points)</option>
+                                    <option value="0">Permeable/inadequate flooring (0 points)</option>
+                                </select>
+                                <div class="error-message">Please select ground permeability status</div>
+                            </div>
+                            
+                            <div class="assessment-form-group required">
+                                <label>CCTV Cameras (2.5 Points)</label>
+                                <select id="cctvCameras">
+                                    <option value="">Select Status</option>
+                                    <option value="2.5">CCTV installed in designated areas (2.5 points)</option>
+                                    <option value="0">No CCTV or inadequate coverage (0 points)</option>
+                                </select>
+                                <div class="error-message">Please select CCTV status</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 6: Audit Completion (20 Points) -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>6. Audit Completion (20 Points)</h2>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="subsection">
+                            <h4>Complete audit by May 31st by NABL accredited agency</h4>
+                            <div class="assessment-form-group required">
+                                <label>Audit Completion Status</label>
+                                <select id="auditCompletion">
+                                    <option value="">Select Status</option>
+                                    <option value="20">All criteria met - Complete audit submitted (20 points)</option>
+                                    <option value="0">Any criteria not met (0 points)</option>
+                                </select>
+                                <div class="error-message">Please select audit completion status</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Section 7: Customer Interface (20 Points) -->
+                <div class="section">
+                    <div class="section-header" onclick="toggleSection(this)">
+                        <h2>7. Customer Interface (20 Points)</h2>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="section-content">
+                        <div class="subsection">
+                            <h4>Customer Satisfaction Assessment</h4>
+                            <div class="assessment-form-group required">
+                                <label>Service Satisfaction (10 Points)</label>
+                                <select id="serviceSatisfaction">
+                                    <option value="">Select Rating</option>
+                                    <option value="10">Very Satisfied (5.0) - 10 points</option>
+                                    <option value="8">Satisfied (4.0) - 8 points</option>
+                                    <option value="6">Neutral (3.0) - 6 points</option>
+                                    <option value="4">Dissatisfied (2.0) - 4 points</option>
+                                    <option value="2">Very Dissatisfied (1.0) - 2 points</option>
+                                </select>
+                                <div class="error-message">Please select service satisfaction rating</div>
+                            </div>
+                            
+                            <div class="assessment-form-group required">
+                                <label>Price Satisfaction (5 Points)</label>
+                                <select id="priceSatisfaction">
+                                    <option value="">Select Rating</option>
+                                    <option value="5">Very Satisfied (5.0) - 5 points</option>
+                                    <option value="4">Satisfied (4.0) - 4 points</option>
+                                    <option value="3">Neutral (3.0) - 3 points</option>
+                                    <option value="2">Dissatisfied (2.0) - 2 points</option>
+                                    <option value="1">Very Dissatisfied (1.0) - 1 point</option>
+                                </select>
+                                <div class="error-message">Please select price satisfaction rating</div>
+                            </div>
+                            
+                            <div class="assessment-form-group required">
+                                <label>Policy Awareness (5 Points)</label>
+                                <select id="policyAwareness">
+                                    <option value="">Select Status</option>
+                                    <option value="5">Promotion activities present (5 points)</option>
+                                    <option value="0">No promotion activities (0 points)</option>
+                                </select>
+                                <div class="error-message">Please select policy awareness status</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="calculate-btn" onclick="calculateRating()">Calculate Vehicle मोक्ष Pro Rating</button>
+                    <button class="download-btn" id="downloadBtn" onclick="downloadReport()">📥 Download Report</button>
+                    <button class="print-btn" id="printBtn" onclick="printReport()">🖨️ Print Report</button>
+                </div>
+                
+                <div class="result-panel" id="resultPanel">
+                    <h2>Vehicle मोक्ष Pro Rating Result</h2>
+                    <div class="final-score" id="finalScore">0</div>
+                    <div class="final-rating" id="finalRating">☆☆☆☆☆</div>
+                    <div class="breakdown">
+                        <div class="breakdown-item">
+                            <h4>Machinery Assets</h4>
+                            <div id="machineryBreakdown">0/10</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <h4>ELV Guidelines</h4>
+                            <div id="elvBreakdown">0/15</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <h4>CD & CVS Gaps</h4>
+                            <div id="cdcvsBreakdown">0/20</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <h4>Mass Flow</h4>
+                            <div id="massFlowBreakdown">0/10</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <h4>Facility Condition</h4>
+                            <div id="facilityBreakdown">0/5</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <h4>Audit Completion</h4>
+                            <div id="auditBreakdown">0/20</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <h4>Customer Interface</h4>
+                            <div id="customerBreakdown">0/20</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let calculationResults = null;
+        let frontPageData = {};
+
+        function proceedToAssessment() {
+            // Collect front page data
+            frontPageData = {
+                auditorName: document.getElementById('auditorName').value,
+                auditorLicense: document.getElementById('auditorLicense').value,
+                auditorContact: document.getElementById('auditorContact').value,
+                auditorEmail: document.getElementById('auditorEmail').value,
+                auditorPhone: document.getElementById('auditorPhone').value,
+                auditeeName: document.getElementById('auditeeName').value,
+                auditeeRegNo: document.getElementById('auditeeRegNo').value,
+                auditeeAddress: document.getElementById('auditeeAddress').value,
+                auditeeContact: document.getElementById('auditeeContact').value,
+                auditYear: document.getElementById('auditYear').value
+            };
+
+            // Hide front page and show assessment page
+            document.getElementById('frontPage').style.display = 'none';
+            document.getElementById('assessmentPage').style.display = 'block';
+        }
+
+        function goBackToFront() {
+            // Show front page and hide assessment page
+            document.getElementById('frontPage').style.display = 'block';
+            document.getElementById('assessmentPage').style.display = 'none';
+        }
+
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.textContent = '+';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('active');
+                icon.textContent = '−';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        function validateForm() {
+            let isValid = true;
+            const requiredFields = [
+                'cdGap', 'cvsGap', 'massFlowGap', 'groundPermeability', 
+                'cctvCameras', 'auditCompletion', 'serviceSatisfaction', 
+                'priceSatisfaction', 'policyAwareness'
+            ];
+            
+            // Clear previous errors
+            document.querySelectorAll('.assessment-form-group.error').forEach(group => {
+                group.classList.remove('error');
+            });
+            document.querySelectorAll('.error-message.show').forEach(msg => {
+                msg.classList.remove('show');
+            });
+            
+            // Validate each required field
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                const formGroup = field.closest('.assessment-form-group');
+                const errorMessage = formGroup.querySelector('.error-message');
+                
+                if (!field.value || field.value === '') {
+                    formGroup.classList.add('error');
+                    errorMessage.classList.add('show');
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+
+        function calculateMachineryScore() {
+            const machineryChecked = document.querySelectorAll('input[name="machinery"]:checked').length;
+            const nonMachineryChecked = document.querySelectorAll('input[name="nonMachinery"]:checked').length;
+            
+            const machineryScore = Math.min(5, (machineryChecked / 25) * 5);
+            const nonMachineryScore = Math.min(5, (nonMachineryChecked / 7) * 5);
+            
+            return machineryScore + nonMachineryScore;
+        }
+
+        function calculateELVScore() {
+            let stagesScore = 0;
+            for (let i = 1; i <= 7; i++) {
+                const stage = document.getElementById(`stage${i}`);
+                if (stage && stage.value === '1') stagesScore++;
+            }
+            const stagesPoints = Math.min(5, (stagesScore / 7) * 5);
+            
+            const guidelinesChecked = document.querySelectorAll('input[name="guidelines"]:checked').length;
+            const guidelinesPoints = Math.min(5, (guidelinesChecked / 9) * 5);
+            
+            let wasteScore = 0;
+            for (let i = 1; i <= 8; i++) {
+                const waste = document.getElementById(`waste${i}`);
+                if (waste && waste.value === '1') wasteScore++;
+            }
+            const wastePoints = Math.min(5, (wasteScore / 8) * 5);
+            
+            return stagesPoints + guidelinesPoints + wastePoints;
+        }
+
+        function calculateCDCVSScore() {
+            const cdGap = parseFloat(document.getElementById('cdGap').value) || 0;
+            const cvsGap = parseFloat(document.getElementById('cvsGap').value) || 0;
+            
+            function getGapScore(gap1, gap2) {
+                if (gap1 < 10 && gap2 < 10) return 20;
+                else if (gap1 < 10 && gap2 >= 10 && gap2 < 20) return 15;
+                else if (gap1 < 10 && gap2 >= 20) return 10;
+                else if (gap1 >= 10 && gap1 < 20 && gap2 < 10) return 15;
+                else if (gap1 >= 10 && gap1 < 20 && gap2 >= 10 && gap2 < 20) return 10;
+                else if (gap1 >= 10 && gap1 < 20 && gap2 >= 20) return 5;
+                else if (gap1 >= 20 && gap2 < 10) return 10;
+                else if (gap1 >= 20 && gap2 >= 10 && gap2 < 20) return 5;
+                else return 0;
+            }
+            
+            return getGapScore(cdGap, cvsGap);
+        }
+
+        function calculateMassFlowScore() {
+            const massFlowGap = parseFloat(document.getElementById('massFlowGap').value) || 0;
+            
+            if (massFlowGap < 30) return 10;
+            else if (massFlowGap <= 50) return 5;
+            else return 0;
+        }
+
+        function calculateFacilityScore() {
+            const groundScore = parseFloat(document.getElementById('groundPermeability').value) || 0;
+            const cctvScore = parseFloat(document.getElementById('cctvCameras').value) || 0;
+            return groundScore + cctvScore;
+        }
+
+        function getStarRating(score) {
+            if (score < 10) return '★☆☆☆☆ (0.5)';
+            else if (score < 20) return '★☆☆☆☆ (1.0)';
+            else if (score < 30) return '★★☆☆☆ (1.5)';
+            else if (score < 40) return '★★☆☆☆ (2.0)';
+            else if (score < 50) return '★★★☆☆ (2.5)';
+            else if (score < 60) return '★★★☆☆ (3.0)';
+            else if (score < 70) return '★★★★☆ (3.5)';
+            else if (score < 80) return '★★★★☆ (4.0)';
+            else if (score < 90) return '★★★★★ (4.5)';
+            else return '★★★★★ (5.0)';
+        }
+
+        function updateScoreCards(machineryScore, elvScore, cdcvsScore, massFlowScore, facilityScore, totalScore) {
+            document.getElementById('machineryScore').textContent = `${machineryScore.toFixed(1)}/10`;
+            document.getElementById('elvScore').textContent = `${elvScore.toFixed(1)}/15`;
+            document.getElementById('cdcvsScore').textContent = `${cdcvsScore}/20`;
+            document.getElementById('massFlowScore').textContent = `${massFlowScore}/10`;
+            document.getElementById('facilityScore').textContent = `${facilityScore}/5`;
+            document.getElementById('totalScore').textContent = `${totalScore.toFixed(1)}/100`;
+            document.getElementById('starRating').textContent = getStarRating(totalScore);
+        }
+
+        function getDetailedResults() {
+            return {
+                frontPageData: frontPageData,
+                machinery: {
+                    checked: Array.from(document.querySelectorAll('input[name="machinery"]:checked')).map(cb => cb.nextElementSibling.textContent),
+                    total: document.querySelectorAll('input[name="machinery"]').length
+                },
+                nonMachinery: {
+                    checked: Array.from(document.querySelectorAll('input[name="nonMachinery"]:checked')).map(cb => cb.nextElementSibling.textContent),
+                    total: document.querySelectorAll('input[name="nonMachinery"]').length
+                },
+                stages: {
+                    completed: Array.from({length: 7}, (_, i) => {
+                        const stage = document.getElementById(`stage${i+1}`);
+                        return {stage: i+1, status: stage ? stage.value === '1' : false};
+                    })
+                },
+                guidelines: {
+                    checked: Array.from(document.querySelectorAll('input[name="guidelines"]:checked')).map(cb => cb.nextElementSibling.textContent)
+                },
+                wasteManagement: {
+                    completed: Array.from({length: 8}, (_, i) => {
+                        const waste = document.getElementById(`waste${i+1}`);
+                        return {item: i+1, status: waste ? waste.value === '1' : false};
+                    })
+                },
+                gaps: {
+                    cdGap: document.getElementById('cdGap').value,
+                    cvsGap: document.getElementById('cvsGap').value,
+                    massFlowGap: document.getElementById('massFlowGap').value
+                },
+                facility: {
+                    groundPermeability: document.getElementById('groundPermeability').selectedOptions[0]?.text || '',
+                    cctvCameras: document.getElementById('cctvCameras').selectedOptions[0]?.text || ''
+                },
+                audit: {
+                    status: document.getElementById('auditCompletion').selectedOptions[0]?.text || ''
+                },
+                customer: {
+                    serviceSatisfaction: document.getElementById('serviceSatisfaction').selectedOptions[0]?.text || '',
+                    priceSatisfaction: document.getElementById('priceSatisfaction').selectedOptions[0]?.text || '',
+                    policyAwareness: document.getElementById('policyAwareness').selectedOptions[0]?.text || ''
+                }
+            };
+        }
+
+        function calculateRating() {
+            if (!validateForm()) {
+                alert('Please fill all mandatory fields marked with (*) before calculating the rating.');
+                return;
+            }
+            
+            const machineryScore = calculateMachineryScore();
+            const elvScore = calculateELVScore();
+            const cdcvsScore = calculateCDCVSScore();
+            const massFlowScore = calculateMassFlowScore();
+            const facilityScore = calculateFacilityScore();
+            const auditScore = parseInt(document.getElementById('auditCompletion').value) || 0;
+            
+            const serviceScore = parseInt(document.getElementById('serviceSatisfaction').value) || 0;
+            const priceScore = parseInt(document.getElementById('priceSatisfaction').value) || 0;
+            const policyScore = parseInt(document.getElementById('policyAwareness').value) || 0;
+            const customerScore = serviceScore + priceScore + policyScore;
+            
+            const totalScore = machineryScore + elvScore + cdcvsScore + massFlowScore + facilityScore + auditScore + customerScore;
+            
+            // Store calculation results
+            calculationResults = {
+                machineryScore,
+                elvScore,
+                cdcvsScore,
+                massFlowScore,
+                facilityScore,
+                auditScore,
+                customerScore,
+                totalScore,
+                details: getDetailedResults()
+            };
+            
+            updateScoreCards(machineryScore, elvScore, cdcvsScore, massFlowScore, facilityScore, totalScore);
+            
+            const resultPanel = document.getElementById('resultPanel');
+            resultPanel.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = totalScore.toFixed(1);
+            document.getElementById('finalRating').textContent = getStarRating(totalScore);
+            document.getElementById('machineryBreakdown').textContent = `${machineryScore.toFixed(1)}/10`;
+            document.getElementById('elvBreakdown').textContent = `${elvScore.toFixed(1)}/15`;
+            document.getElementById('cdcvsBreakdown').textContent = `${cdcvsScore}/20`;
+            document.getElementById('massFlowBreakdown').textContent = `${massFlowScore}/10`;
+            document.getElementById('facilityBreakdown').textContent = `${facilityScore}/5`;
+            document.getElementById('auditBreakdown').textContent = `${auditScore}/20`;
+            document.getElementById('customerBreakdown').textContent = `${customerScore}/20`;
+            
+            // Show download and print buttons
+            document.getElementById('downloadBtn').classList.add('show');
+            document.getElementById('printBtn').classList.add('show');
+            
+            resultPanel.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateReportHTML() {
+            if (!calculationResults) return '';
+            
+            const { machineryScore, elvScore, cdcvsScore, massFlowScore, facilityScore, auditScore, customerScore, totalScore, details } = calculationResults;
+            const currentDate = new Date().toLocaleDateString();
+            
+            return `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicle मोक्ष Pro Assessment Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .report-header { text-align: center; border-bottom: 3px solid #333; padding-bottom: 20px; margin-bottom: 30px; }
+        .report-header h1 { color: #333; margin-bottom: 10px; font-size: 2.5em; }
+        .report-header p { color: #666; }
+        .audit-info { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .info-card { background: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #4a90e2; }
+        .info-card h3 { color: #4a90e2; margin-bottom: 15px; }
+        .info-item { margin-bottom: 8px; }
+        .info-label { font-weight: bold; color: #333; }
+        .score-summary { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .score-item { text-align: center; background: white; padding: 15px; border-radius: 5px; border: 1px solid #ddd; }
+        .score-item h4 { margin: 0 0 10px 0; color: #333; }
+        .score-value { font-size: 1.5em; font-weight: bold; color: #4a90e2; }
+        .section { margin-bottom: 25px; page-break-inside: avoid; }
+        .section h3 { background: #f8f9fa; padding: 10px; border-left: 4px solid #4a90e2; margin-bottom: 15px; }
+        .detail-list { margin-left: 20px; }
+        .detail-list li { margin-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #f8f9fa; }
+        .final-rating { text-align: center; background: #4a90e2; color: white; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .final-rating h2 { margin: 0; }
+        .stars { font-size: 2em; color: #ffd700; margin: 10px 0; }
+        .developer-info { background: #ff6b6b; color: white; padding: 15px; border-radius: 8px; text-align: center; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <h1>Vehicle मोक्ष Pro Assessment Report</h1>
+        <p>Ministry of Road Transport and Highways (MoRTH) Framework</p>
+        <p>Generated on: ${currentDate}</p>
+    </div>
+
+    <div class="audit-info">
+        <div class="info-card">
+            <h3>🏢 Auditor Agency Details</h3>
+            <div class="info-item"><span class="info-label">Agency Name:</span> ${details.frontPageData.auditorName || 'N/A'}</div>
+            <div class="info-item"><span class="info-label">License Number:</span> ${details.frontPageData.auditorLicense || 'N/A'}</div>
+            <div class="info-item"><span class="info-label">Contact Person:</span> ${details.frontPageData.auditorContact || 'N/A'}</div>
+            <div class="info-item"><span class="info-label">Email:</span> ${details.frontPageData.auditorEmail || 'N/A'}</div>
+            <div class="info-item"><span class="info-label">Phone:</span> ${details.frontPageData.auditorPhone || 'N/A'}</div>
+        </div>
+        <div class="info-card">
+            <h3>🏭 Auditee (RVSF) Details</h3>
+            <div class="info-item"><span class="info-label">Facility Name:</span> ${details.frontPageData.auditeeName || 'N/A'}</div>
+            <div class="info-item"><span class="info-label">Registration Number:</span> ${details.frontPageData.auditeeRegNo || 'N/A'}</div>
+            <div class="info-item"><span class="info-label">Address:</span> ${details.frontPageData.auditeeAddress || 'N/A'}</div>
+            <div class="info-item"><span class="info-label">Contact Person:</span> ${details.frontPageData.auditeeContact || 'N/A'}</div>
+            <div class="info-item"><span class="info-label">Audit Year:</span> ${details.frontPageData.auditYear || 'N/A'}</div>
+        </div>
+    </div>
+
+    <div class="final-rating">
+        <h2>Overall Vehicle मोक्ष Pro Rating</h2>
+        <div style="font-size: 2.5em; margin: 10px 0;">${totalScore.toFixed(1)}/100</div>
+        <div class="stars">${getStarRating(totalScore)}</div>
+    </div>
+
+    <div class="score-summary">
+        <h3>Score Breakdown Summary</h3>
+        <div class="score-grid">
+            <div class="score-item">
+                <h4>Machinery Assets</h4>
+                <div class="score-value">${machineryScore.toFixed(1)}/10</div>
+            </div>
+            <div class="score-item">
+                <h4>ELV Guidelines</h4>
+                <div class="score-value">${elvScore.toFixed(1)}/15</div>
+            </div>
+            <div class="score-item">
+                <h4>CD & CVS Gaps</h4>
+                <div class="score-value">${cdcvsScore}/20</div>
+            </div>
+            <div class="score-item">
+                <h4>Mass Flow</h4>
+                <div class="score-value">${massFlowScore}/10</div>
+            </div>
+            <div class="score-item">
+                <h4>Facility Condition</h4>
+                <div class="score-value">${facilityScore}/5</div>
+            </div>
+            <div class="score-item">
+                <h4>Audit Completion</h4>
+                <div class="score-value">${auditScore}/20</div>
+            </div>
+            <div class="score-item">
+                <h4>Customer Interface</h4>
+                <div class="score-value">${customerScore}/20</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>1. Machinery Assets Details (${machineryScore.toFixed(1)}/10 Points)</h3>
+        <h4>Available Machinery (${details.machinery.checked.length}/${details.machinery.total}):</h4>
+        <ul class="detail-list">
+            ${details.machinery.checked.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+        
+        <h4>Available Non-Machinery Assets (${details.nonMachinery.checked.length}/${details.nonMachinery.total}):</h4>
+        <ul class="detail-list">
+            ${details.nonMachinery.checked.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>2. ELV Guidelines Compliance (${elvScore.toFixed(1)}/15 Points)</h3>
+        
+        <h4>ELV Management Stages:</h4>
+        <table>
+            <tr><th>Stage</th><th>Status</th></tr>
+            ${details.stages.completed.map(stage => 
+                `<tr><td>Stage ${stage.stage}</td><td>${stage.status ? 'Completed' : 'Not Completed'}</td></tr>`
+            ).join('')}
+        </table>
+        
+        <h4>Guidelines Implemented:</h4>
+        <ul class="detail-list">
+            ${details.guidelines.checked.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+        
+        <h4>Waste Management Processes:</h4>
+        <table>
+            <tr><th>Item</th><th>Status</th></tr>
+            ${details.wasteManagement.completed.map(waste => 
+                `<tr><td>Item ${waste.item}</td><td>${waste.status ? 'Implemented' : 'Not Implemented'}</td></tr>`
+            ).join('')}
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>3. CD & CVS Gap Analysis (${cdcvsScore}/20 Points)</h3>
+        <table>
+            <tr><th>Parameter</th><th>Value</th></tr>
+            <tr><td>CD Gap</td><td>${details.gaps.cdGap}%</td></tr>
+            <tr><td>CVS Gap</td><td>${details.gaps.cvsGap}%</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>4. Mass Flow Analysis (${massFlowScore}/10 Points)</h3>
+        <table>
+            <tr><th>Parameter</th><th>Value</th></tr>
+            <tr><td>Inflow-Outflow Gap</td><td>${details.gaps.massFlowGap}%</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>5. Facility Condition Assessment (${facilityScore}/5 Points)</h3>
+        <table>
+            <tr><th>Aspect</th><th>Status</th></tr>
+            <tr><td>Ground Permeability</td><td>${details.facility.groundPermeability}</td></tr>
+            <tr><td>CCTV Cameras</td><td>${details.facility.cctvCameras}</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>6. Audit Completion (${auditScore}/20 Points)</h3>
+        <p><strong>Status:</strong> ${details.audit.status}</p>
+    </div>
+
+    <div class="section">
+        <h3>7. Customer Interface Assessment (${customerScore}/20 Points)</h3>
+        <table>
+            <tr><th>Aspect</th><th>Rating</th></tr>
+            <tr><td>Service Satisfaction</td><td>${details.customer.serviceSatisfaction}</td></tr>
+            <tr><td>Price Satisfaction</td><td>${details.customer.priceSatisfaction}</td></tr>
+            <tr><td>Policy Awareness</td><td>${details.customer.policyAwareness}</td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Recommendations</h3>
+        <ul class="detail-list">
+            ${totalScore < 50 ? '<li>Focus on improving basic infrastructure and compliance requirements</li>' : ''}
+            ${machineryScore < 5 ? '<li>Invest in additional machinery and equipment as per MoRTH guidelines</li>' : ''}
+            ${elvScore < 8 ? '<li>Enhance ELV guidelines compliance and waste management processes</li>' : ''}
+            ${cdcvsScore < 10 ? '<li>Reduce CD and CVS gaps through better process optimization</li>' : ''}
+            ${facilityScore < 3 ? '<li>Upgrade facility infrastructure including flooring and surveillance systems</li>' : ''}
+            ${auditScore < 20 ? '<li>Complete the mandatory audit by NABL accredited agency before May 31st</li>' : ''}
+            ${customerScore < 15 ? '<li>Improve customer satisfaction and policy awareness initiatives</li>' : ''}
+            ${totalScore >= 80 ? '<li>Excellent performance! Continue maintaining high standards and consider best practice sharing</li>' : ''}
+        </ul>
+    </div>
+
+    <div class="developer-info">
+        <h3>🔬 Developed By</h3>
+        <div style="font-size: 1.2em; font-weight: bold;">CSIR - Indian Institute of Petroleum</div>
+        <p>Dehradun, Uttarakhand, India</p>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center; color: #666; border-top: 1px solid #ddd; padding-top: 20px;">
+        <p>This report was generated using the Vehicle मोक्ष Pro Tool based on MoRTH Framework guidelines.</p>
+        <p>For more information, please contact the relevant authorities.</p>
+    </div>
+</body>
+</html>`;
+        }
+
+        function downloadReport() {
+            if (!calculationResults) {
+                alert('Please calculate the rating first before downloading the report.');
+                return;
+            }
+
+            const reportHTML = generateReportHTML();
+            const blob = new Blob([reportHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Vehicle_मोक्ष_Pro_Report_${new Date().toISOString().split('T')[0]}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function printReport() {
+            if (!calculationResults) {
+                alert('Please calculate the rating first before printing the report.');
+                return;
+            }
+
+            const reportHTML = generateReportHTML();
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(reportHTML);
+            printWindow.document.close();
+            
+            // Wait for content to load then print
+            printWindow.onload = function() {
+                printWindow.print();
+            };
+        }
+    </script>
+</body>
+</html>
