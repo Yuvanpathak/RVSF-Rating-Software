@@ -39,11 +39,13 @@
         .front-header {
             text-align: center;
             margin-bottom: 40px;
-            padding: 30px;
+            padding: 40px 30px;
             background: linear-gradient(45deg, #4a90e2, #357abd);
             color: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+            position: relative;
+            overflow: hidden;
         }
         
         .software-title {
@@ -51,6 +53,148 @@
             font-weight: bold;
             margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .left-animation {
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            pointer-events: none;
+            margin-right: 20px;
+        }
+        
+        .right-animation {
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            pointer-events: none;
+            margin-left: 20px;
+        }
+        
+        .vehicle-input {
+            font-size: 1.8em;
+            animation: vehicleMove 6s ease-in-out infinite;
+        }
+        
+        .processing-facility {
+            font-size: 1.6em;
+            animation: facilityWork 4s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .facility-sparks {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7em;
+            animation: sparkEffect 2s ease-in-out infinite;
+            opacity: 0;
+        }
+        
+        .output-materials {
+            display: flex;
+            gap: 8px;
+            animation: materialsAppear 6s ease-in-out infinite;
+            opacity: 0;
+        }
+        
+        .output-item {
+            font-size: 1.1em;
+            animation: itemBounce 2s ease-in-out infinite;
+        }
+        
+        .output-item:nth-child(1) { animation-delay: 0.1s; }
+        .output-item:nth-child(2) { animation-delay: 0.2s; }
+        .output-item:nth-child(3) { animation-delay: 0.3s; }
+        
+        .recycling-symbol {
+            font-size: 1.3em;
+            animation: recycleRotate 4s linear infinite;
+        }
+        
+        @keyframes vehicleMove {
+            0% { 
+                transform: translateX(-20px) scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: translateX(0) scale(0.9);
+                opacity: 0.7;
+            }
+            100% { 
+                transform: translateX(10px) scale(0.8);
+                opacity: 0.5;
+            }
+        }
+        
+        @keyframes facilityWork {
+            0%, 100% { 
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% { 
+                transform: scale(1.1);
+                filter: brightness(1.3);
+            }
+        }
+        
+        @keyframes sparkEffect {
+            0%, 60% { 
+                opacity: 0;
+                transform: translateX(-50%) translateY(0);
+            }
+            80% { 
+                opacity: 1;
+                transform: translateX(-50%) translateY(-8px);
+            }
+            100% { 
+                opacity: 0;
+                transform: translateX(-50%) translateY(-12px);
+            }
+        }
+        
+        @keyframes materialsAppear {
+            0%, 40% { 
+                opacity: 0;
+                transform: translateX(-15px) scale(0.5);
+            }
+            70% { 
+                opacity: 0.8;
+                transform: translateX(-5px) scale(0.8);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+        
+        @keyframes itemBounce {
+            0%, 100% { 
+                transform: translateY(0);
+            }
+            50% { 
+                transform: translateY(-6px);
+            }
+        }
+        
+        @keyframes recycleRotate {
+            0% { 
+                transform: rotate(0deg);
+            }
+            100% { 
+                transform: rotate(360deg);
+            }
         }
         
         .morth-subtitle {
@@ -365,31 +509,120 @@
             display: block;
         }
         
+        /* Enhanced Checkbox Grid with Red/Green System */
         .checkbox-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 15px;
             margin-top: 10px;
         }
         
         .checkbox-item {
             display: flex;
             align-items: center;
-            padding: 8px;
+            padding: 12px;
             background: #f8f9fa;
-            border-radius: 5px;
-            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         
-        .checkbox-item input[type="checkbox"] {
-            margin-right: 8px;
-            width: auto;
+        .checkbox-item.red-checked {
+            background-color: #ffebee;
+            border-color: #f44336;
+            color: #d32f2f;
+        }
+        
+        .checkbox-item.green-checked {
+            background-color: #e8f5e8;
+            border-color: #4caf50;
+            color: #2e7d32;
+        }
+        
+        .checkbox-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .checkbox-container {
+            display: flex;
+            gap: 8px;
+            margin-right: 12px;
+            align-items: center;
+        }
+        
+        .custom-checkbox {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: bold;
+            background: white;
+        }
+        
+        .custom-checkbox.red {
+            border-color: #f44336;
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .custom-checkbox.green {
+            border-color: #4caf50;
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .custom-checkbox:hover {
+            transform: scale(1.1);
         }
         
         .checkbox-item label {
             margin: 0;
-            font-weight: normal;
+            font-weight: 500;
             cursor: pointer;
+            flex-grow: 1;
+            font-size: 14px;
+        }
+        
+        .checkbox-legend {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .legend-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+        
+        .legend-red {
+            background-color: #f44336;
+        }
+        
+        .legend-green {
+            background-color: #4caf50;
         }
         
         .table-section {
@@ -591,7 +824,26 @@
         <!-- Front Page -->
         <div class="front-page" id="frontPage">
             <div class="front-header">
-                <div class="software-title">Vehicle मोक्ष Pro</div>
+                <div class="software-title">
+                    <div class="left-animation">
+                        <div class="vehicle-input">🚗</div>
+                        <div class="processing-facility">
+                            🏭
+                            <div class="facility-sparks">✨</div>
+                        </div>
+                    </div>
+                    
+                    Vehicle मोक्ष Pro
+                    
+                    <div class="right-animation">
+                        <div class="output-materials">
+                            <span class="output-item">🔩</span>
+                            <span class="output-item">🔋</span>
+                            <span class="output-item">♻️</span>
+                        </div>
+                        <div class="recycling-symbol">🌱</div>
+                    </div>
+                </div>
                 <div class="morth-subtitle">Ministry of Road Transport and Highways (MoRTH) Framework</div>
                 <div class="version-tag">Professional Assessment Tool v2.0</div>
             </div>
@@ -724,156 +976,284 @@
                     <div class="section-content">
                         <div class="subsection">
                             <h4>Machinery Assets (5 Points)</h4>
+                            <div class="checkbox-legend">
+                                <div class="legend-item">
+                                    <div class="legend-box legend-red"></div>
+                                    <span>Red: Not Available</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-box legend-green"></div>
+                                    <span>Green: Available</span>
+                                </div>
+                            </div>
                             <div class="checkbox-grid">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m1" name="machinery">
-                                    <label for="m1">1. Bailing press</label>
+                                <div class="checkbox-item" data-item="m1">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>1. Bailing press</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m2" name="machinery">
-                                    <label for="m2">2. Depolluting system</label>
+                                <div class="checkbox-item" data-item="m2">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>2. Depolluting system</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m2a" name="machinery">
-                                    <label for="m2a">2a. Hydraulic Lift</label>
+                                <div class="checkbox-item" data-item="m2a">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>2a. Hydraulic Lift</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m2b" name="machinery">
-                                    <label for="m2b">2b. Oil Pump</label>
+                                <div class="checkbox-item" data-item="m2b">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>2b. Oil Pump</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m2c" name="machinery">
-                                    <label for="m2c">2c. Oil/Lubricant/other Fluid Separator Tanks</label>
+                                <div class="checkbox-item" data-item="m2c">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>2c. Oil/Lubricant/other Fluid Separator Tanks</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m2d" name="machinery">
-                                    <label for="m2d">2d. LPG/CNG Burners</label>
+                                <div class="checkbox-item" data-item="m2d">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>2d. LPG/CNG Burners</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m3" name="machinery">
-                                    <label for="m3">3. AC gas Recovery unit</label>
+                                <div class="checkbox-item" data-item="m3">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>3. AC gas Recovery unit</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m4" name="machinery">
-                                    <label for="m4">4. Material handling machines - Cranes/Forklift</label>
+                                <div class="checkbox-item" data-item="m4">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>4. Material handling machines - Cranes/Forklift</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m5" name="machinery">
-                                    <label for="m5">5. Radiation Detection System</label>
+                                <div class="checkbox-item" data-item="m5">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>5. Radiation Detection System</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m6" name="machinery">
-                                    <label for="m6">6. Shredder</label>
+                                <div class="checkbox-item" data-item="m6">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>6. Shredder</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m7" name="machinery">
-                                    <label for="m7">7. Tilting Machine</label>
+                                <div class="checkbox-item" data-item="m7">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>7. Tilting Machine</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m8" name="machinery">
-                                    <label for="m8">8. Weighbridge</label>
+                                <div class="checkbox-item" data-item="m8">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>8. Weighbridge</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m9" name="machinery">
-                                    <label for="m9">9. Drum Magnets</label>
+                                <div class="checkbox-item" data-item="m9">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>9. Drum Magnets</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m10" name="machinery">
-                                    <label for="m10">10. Eddy Current Separators</label>
+                                <div class="checkbox-item" data-item="m10">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>10. Eddy Current Separators</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m11" name="machinery">
-                                    <label for="m11">11. Magnetic Separators</label>
+                                <div class="checkbox-item" data-item="m11">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>11. Magnetic Separators</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m12" name="machinery">
-                                    <label for="m12">12. Auto Shear Machine for cutting catalytic converter</label>
+                                <div class="checkbox-item" data-item="m12">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>12. Auto Shear Machine for cutting catalytic converter</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m13" name="machinery">
-                                    <label for="m13">13. Air Bag deployment unit</label>
+                                <div class="checkbox-item" data-item="m13">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>13. Air Bag deployment unit</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m14" name="machinery">
-                                    <label for="m14">14. Filter wrench/oil filter Removal Tool</label>
+                                <div class="checkbox-item" data-item="m14">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>14. Filter wrench/oil filter Removal Tool</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m15" name="machinery">
-                                    <label for="m15">15. Wheel popper</label>
+                                <div class="checkbox-item" data-item="m15">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>15. Wheel popper</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m16" name="machinery">
-                                    <label for="m16">16. Piercing equipment for damper oil</label>
+                                <div class="checkbox-item" data-item="m16">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>16. Piercing equipment for damper oil</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m17" name="machinery">
-                                    <label for="m17">17. Pneumatic saw</label>
+                                <div class="checkbox-item" data-item="m17">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>17. Pneumatic saw</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m18" name="machinery">
-                                    <label for="m18">18. Portable power tool</label>
+                                <div class="checkbox-item" data-item="m18">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>18. Portable power tool</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m19" name="machinery">
-                                    <label for="m19">19. Draining Tray</label>
+                                <div class="checkbox-item" data-item="m19">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>19. Draining Tray</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m20" name="machinery">
-                                    <label for="m20">20. Pry/bar/Spanner/Ratchet/Mallet</label>
+                                <div class="checkbox-item" data-item="m20">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>20. Pry/bar/Spanner/Ratchet/Mallet</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m21" name="machinery">
-                                    <label for="m21">21. Screwdriver/Slot screwdriver/Impact screwdriver</label>
+                                <div class="checkbox-item" data-item="m21">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>21. Screwdriver/Slot screwdriver/Impact screwdriver</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m22" name="machinery">
-                                    <label for="m22">22. Cutter/cutting pliers/Special plier</label>
+                                <div class="checkbox-item" data-item="m22">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>22. Cutter/cutting pliers/Special plier</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m23" name="machinery">
-                                    <label for="m23">23. Center Punch & bag</label>
+                                <div class="checkbox-item" data-item="m23">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>23. Center Punch & bag</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m24" name="machinery">
-                                    <label for="m24">24. Windshield removal tool</label>
+                                <div class="checkbox-item" data-item="m24">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>24. Windshield removal tool</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="m25" name="machinery">
-                                    <label for="m25">25. Pneumatic air gun</label>
+                                <div class="checkbox-item" data-item="m25">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>25. Pneumatic air gun</label>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="subsection">
                             <h4>Non-Machinery Assets (5 Points)</h4>
+                            <div class="checkbox-legend">
+                                <div class="legend-item">
+                                    <div class="legend-box legend-red"></div>
+                                    <span>Red: Not Available</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-box legend-green"></div>
+                                    <span>Green: Available</span>
+                                </div>
+                            </div>
                             <div class="checkbox-grid">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="nm1" name="nonMachinery">
-                                    <label for="nm1">1. Safety and occupational health equipment</label>
+                                <div class="checkbox-item" data-item="nm1">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>1. Safety and occupational health equipment</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="nm2" name="nonMachinery">
-                                    <label for="nm2">2. Fire protection system</label>
+                                <div class="checkbox-item" data-item="nm2">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>2. Fire protection system</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="nm3" name="nonMachinery">
-                                    <label for="nm3">3. Material handling equipment for safe transportation</label>
+                                <div class="checkbox-item" data-item="nm3">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>3. Material handling equipment for safe transportation</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="nm4" name="nonMachinery">
-                                    <label for="nm4">4. Industrial grade lighting and ventilation systems</label>
+                                <div class="checkbox-item" data-item="nm4">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>4. Industrial grade lighting and ventilation systems</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="nm5" name="nonMachinery">
-                                    <label for="nm5">5. Effluent treatment plants or water recycling plants</label>
+                                <div class="checkbox-item" data-item="nm5">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>5. Effluent treatment plants or water recycling plants</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="nm6" name="nonMachinery">
-                                    <label for="nm6">6. Certified standard storage containers</label>
+                                <div class="checkbox-item" data-item="nm6">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>6. Certified standard storage containers</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="nm7" name="nonMachinery">
-                                    <label for="nm7">7. Certification of de-polluting equipment</label>
+                                <div class="checkbox-item" data-item="nm7">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>7. Certification of de-polluting equipment</label>
                                 </div>
                             </div>
                         </div>
@@ -937,42 +1317,79 @@
                         
                         <div class="subsection">
                             <h4>Guidelines to RVSFs for Handling of ELVs (5 Points)</h4>
+                            <div class="checkbox-legend">
+                                <div class="legend-item">
+                                    <div class="legend-box legend-red"></div>
+                                    <span>Red: Not Available</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-box legend-green"></div>
+                                    <span>Green: Available</span>
+                                </div>
+                            </div>
                             <div class="checkbox-grid">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="guide1" name="guidelines">
-                                    <label for="guide1">1. Suitable earmarked area for parking, scrapping yard operations and storage of scraps</label>
+                                <div class="checkbox-item" data-item="guide1">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>1. Suitable earmarked area for parking, scrapping yard operations and storage of scraps</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="guide2" name="guidelines">
-                                    <label for="guide2">2. Parking of ELVs on non-permeable asphalt or concrete or epoxy coated flooring</label>
+                                <div class="checkbox-item" data-item="guide2">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>2. Parking of ELVs on non-permeable asphalt or concrete or epoxy coated flooring</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="guide3" name="guidelines">
-                                    <label for="guide3">3. Certified de-polluting equipment to ensure zero leakage</label>
+                                <div class="checkbox-item" data-item="guide3">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>3. Certified de-polluting equipment to ensure zero leakage</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="guide4" name="guidelines">
-                                    <label for="guide4">4. Dismantling equipment & designated areas for storing segregated scrap</label>
+                                <div class="checkbox-item" data-item="guide4">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>4. Dismantling equipment & designated areas for storing segregated scrap</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="guide5" name="guidelines">
-                                    <label for="guide5">5. Adequate space for storage and handling of segregated spares</label>
+                                <div class="checkbox-item" data-item="guide5">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>5. Adequate space for storage and handling of segregated spares</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="guide6" name="guidelines">
-                                    <label for="guide6">6. Designated space for temporary storage of automotive hazardous waste</label>
+                                <div class="checkbox-item" data-item="guide6">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>6. Designated space for temporary storage of automotive hazardous waste</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="guide7" name="guidelines">
-                                    <label for="guide7">7. Safety and occupational health equipment</label>
+                                <div class="checkbox-item" data-item="guide7">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>7. Safety and occupational health equipment</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="guide8" name="guidelines">
-                                    <label for="guide8">8. Appropriate Industrial grade lighting and ventilation systems</label>
+                                <div class="checkbox-item" data-item="guide8">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>8. Appropriate Industrial grade lighting and ventilation systems</label>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="guide9" name="guidelines">
-                                    <label for="guide9">9. Appropriate effluent treatment plants or water recycling plants</label>
+                                <div class="checkbox-item" data-item="guide9">
+                                    <div class="checkbox-container">
+                                        <div class="custom-checkbox" data-type="red" onclick="toggleCheckbox(this, 'red')">✗</div>
+                                        <div class="custom-checkbox" data-type="green" onclick="toggleCheckbox(this, 'green')">✓</div>
+                                    </div>
+                                    <label>9. Appropriate effluent treatment plants or water recycling plants</label>
                                 </div>
                             </div>
                         </div>
@@ -1276,6 +1693,7 @@
     <script>
         let calculationResults = null;
         let frontPageData = {};
+        let itemStates = {}; // Track red/green states for all checkbox items
 
         function proceedToAssessment() {
             // Collect front page data
@@ -1318,6 +1736,49 @@
             }
         }
 
+        // Enhanced checkbox toggle function for red/green system
+        function toggleCheckbox(checkbox, type) {
+            const item = checkbox.closest('.checkbox-item');
+            const itemId = item.getAttribute('data-item');
+            
+            // Get both checkboxes for this item
+            const redCheckbox = item.querySelector('[data-type="red"]');
+            const greenCheckbox = item.querySelector('[data-type="green"]');
+            
+            // Reset both checkboxes first
+            redCheckbox.classList.remove('red');
+            greenCheckbox.classList.remove('green');
+            item.classList.remove('red-checked', 'green-checked');
+            
+            // If clicking the same type that's already selected, deselect it
+            if (itemStates[itemId] === type) {
+                delete itemStates[itemId];
+            } else {
+                // Set the new selection
+                itemStates[itemId] = type;
+                
+                if (type === 'red') {
+                    redCheckbox.classList.add('red');
+                    item.classList.add('red-checked');
+                } else {
+                    greenCheckbox.classList.add('green');
+                    item.classList.add('green-checked');
+                }
+            }
+            
+            // Update real-time scoring
+            updateRealTimeScoring();
+        }
+
+        function updateRealTimeScoring() {
+            const machineryScore = calculateMachineryScore();
+            const elvScore = calculateELVScore();
+            
+            // Update the score cards in real-time
+            document.getElementById('machineryScore').textContent = `${machineryScore.toFixed(1)}/10`;
+            document.getElementById('elvScore').textContent = `${elvScore.toFixed(1)}/15`;
+        }
+
         function validateForm() {
             let isValid = true;
             const requiredFields = [
@@ -1351,11 +1812,32 @@
         }
 
         function calculateMachineryScore() {
-            const machineryChecked = document.querySelectorAll('input[name="machinery"]:checked').length;
-            const nonMachineryChecked = document.querySelectorAll('input[name="nonMachinery"]:checked').length;
+            // Count green (available) items in machinery section
+            const machineryItems = ['m1', 'm2', 'm2a', 'm2b', 'm2c', 'm2d', 'm3', 'm4', 'm5', 'm6', 
+                                   'm7', 'm8', 'm9', 'm10', 'm11', 'm12', 'm13', 'm14', 'm15', 'm16', 
+                                   'm17', 'm18', 'm19', 'm20', 'm21', 'm22', 'm23', 'm24', 'm25'];
             
-            const machineryScore = Math.min(5, (machineryChecked / 25) * 5);
-            const nonMachineryScore = Math.min(5, (nonMachineryChecked / 7) * 5);
+            const nonMachineryItems = ['nm1', 'nm2', 'nm3', 'nm4', 'nm5', 'nm6', 'nm7'];
+            
+            let machineryGreenCount = 0;
+            let nonMachineryGreenCount = 0;
+            
+            // Count green selections for machinery
+            machineryItems.forEach(itemId => {
+                if (itemStates[itemId] === 'green') {
+                    machineryGreenCount++;
+                }
+            });
+            
+            // Count green selections for non-machinery
+            nonMachineryItems.forEach(itemId => {
+                if (itemStates[itemId] === 'green') {
+                    nonMachineryGreenCount++;
+                }
+            });
+            
+            const machineryScore = Math.min(5, (machineryGreenCount / machineryItems.length) * 5);
+            const nonMachineryScore = Math.min(5, (nonMachineryGreenCount / nonMachineryItems.length) * 5);
             
             return machineryScore + nonMachineryScore;
         }
@@ -1368,8 +1850,15 @@
             }
             const stagesPoints = Math.min(5, (stagesScore / 7) * 5);
             
-            const guidelinesChecked = document.querySelectorAll('input[name="guidelines"]:checked').length;
-            const guidelinesPoints = Math.min(5, (guidelinesChecked / 9) * 5);
+            // Count green guidelines
+            const guidelinesItems = ['guide1', 'guide2', 'guide3', 'guide4', 'guide5', 'guide6', 'guide7', 'guide8', 'guide9'];
+            let guidelinesGreenCount = 0;
+            guidelinesItems.forEach(itemId => {
+                if (itemStates[itemId] === 'green') {
+                    guidelinesGreenCount++;
+                }
+            });
+            const guidelinesPoints = Math.min(5, (guidelinesGreenCount / guidelinesItems.length) * 5);
             
             let wasteScore = 0;
             for (let i = 1; i <= 8; i++) {
@@ -1441,12 +1930,26 @@
             return {
                 frontPageData: frontPageData,
                 machinery: {
-                    checked: Array.from(document.querySelectorAll('input[name="machinery"]:checked')).map(cb => cb.nextElementSibling.textContent),
-                    total: document.querySelectorAll('input[name="machinery"]').length
+                    available: Object.keys(itemStates).filter(key => key.startsWith('m') && itemStates[key] === 'green').map(key => {
+                        const element = document.querySelector(`[data-item="${key}"] label`);
+                        return element ? element.textContent : key;
+                    }),
+                    notAvailable: Object.keys(itemStates).filter(key => key.startsWith('m') && itemStates[key] === 'red').map(key => {
+                        const element = document.querySelector(`[data-item="${key}"] label`);
+                        return element ? element.textContent : key;
+                    }),
+                    total: 25
                 },
                 nonMachinery: {
-                    checked: Array.from(document.querySelectorAll('input[name="nonMachinery"]:checked')).map(cb => cb.nextElementSibling.textContent),
-                    total: document.querySelectorAll('input[name="nonMachinery"]').length
+                    available: Object.keys(itemStates).filter(key => key.startsWith('nm') && itemStates[key] === 'green').map(key => {
+                        const element = document.querySelector(`[data-item="${key}"] label`);
+                        return element ? element.textContent : key;
+                    }),
+                    notAvailable: Object.keys(itemStates).filter(key => key.startsWith('nm') && itemStates[key] === 'red').map(key => {
+                        const element = document.querySelector(`[data-item="${key}"] label`);
+                        return element ? element.textContent : key;
+                    }),
+                    total: 7
                 },
                 stages: {
                     completed: Array.from({length: 7}, (_, i) => {
@@ -1455,7 +1958,14 @@
                     })
                 },
                 guidelines: {
-                    checked: Array.from(document.querySelectorAll('input[name="guidelines"]:checked')).map(cb => cb.nextElementSibling.textContent)
+                    available: Object.keys(itemStates).filter(key => key.startsWith('guide') && itemStates[key] === 'green').map(key => {
+                        const element = document.querySelector(`[data-item="${key}"] label`);
+                        return element ? element.textContent : key;
+                    }),
+                    notAvailable: Object.keys(itemStates).filter(key => key.startsWith('guide') && itemStates[key] === 'red').map(key => {
+                        const element = document.querySelector(`[data-item="${key}"] label`);
+                        return element ? element.textContent : key;
+                    })
                 },
                 wasteManagement: {
                     completed: Array.from({length: 8}, (_, i) => {
@@ -1569,6 +2079,9 @@
         .section h3 { background: #f8f9fa; padding: 10px; border-left: 4px solid #4a90e2; margin-bottom: 15px; }
         .detail-list { margin-left: 20px; }
         .detail-list li { margin-bottom: 5px; }
+        .status-section { margin-bottom: 20px; }
+        .status-section h4 { color: #28a745; margin-bottom: 10px; }
+        .status-section.unavailable h4 { color: #dc3545; }
         table { width: 100%; border-collapse: collapse; margin: 10px 0; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
         th { background: #f8f9fa; }
@@ -1646,15 +2159,34 @@
 
     <div class="section">
         <h3>1. Machinery Assets Details (${machineryScore.toFixed(1)}/10 Points)</h3>
-        <h4>Available Machinery (${details.machinery.checked.length}/${details.machinery.total}):</h4>
-        <ul class="detail-list">
-            ${details.machinery.checked.map(item => `<li>${item}</li>`).join('')}
-        </ul>
         
-        <h4>Available Non-Machinery Assets (${details.nonMachinery.checked.length}/${details.nonMachinery.total}):</h4>
-        <ul class="detail-list">
-            ${details.nonMachinery.checked.map(item => `<li>${item}</li>`).join('')}
-        </ul>
+        <div class="status-section">
+            <h4>✅ Available Machinery (${details.machinery.available.length}/${details.machinery.total}):</h4>
+            <ul class="detail-list">
+                ${details.machinery.available.map(item => `<li>${item}</li>`).join('') || '<li>No machinery marked as available</li>'}
+            </ul>
+        </div>
+        
+        <div class="status-section unavailable">
+            <h4>❌ Not Available Machinery (${details.machinery.notAvailable.length}/${details.machinery.total}):</h4>
+            <ul class="detail-list">
+                ${details.machinery.notAvailable.map(item => `<li>${item}</li>`).join('') || '<li>No machinery marked as not available</li>'}
+            </ul>
+        </div>
+        
+        <div class="status-section">
+            <h4>✅ Available Non-Machinery Assets (${details.nonMachinery.available.length}/${details.nonMachinery.total}):</h4>
+            <ul class="detail-list">
+                ${details.nonMachinery.available.map(item => `<li>${item}</li>`).join('') || '<li>No non-machinery assets marked as available</li>'}
+            </ul>
+        </div>
+        
+        <div class="status-section unavailable">
+            <h4>❌ Not Available Non-Machinery Assets (${details.nonMachinery.notAvailable.length}/${details.nonMachinery.total}):</h4>
+            <ul class="detail-list">
+                ${details.nonMachinery.notAvailable.map(item => `<li>${item}</li>`).join('') || '<li>No non-machinery assets marked as not available</li>'}
+            </ul>
+        </div>
     </div>
 
     <div class="section">
@@ -1668,10 +2200,19 @@
             ).join('')}
         </table>
         
-        <h4>Guidelines Implemented:</h4>
-        <ul class="detail-list">
-            ${details.guidelines.checked.map(item => `<li>${item}</li>`).join('')}
-        </ul>
+        <div class="status-section">
+            <h4>✅ Available Guidelines:</h4>
+            <ul class="detail-list">
+                ${details.guidelines.available.map(item => `<li>${item}</li>`).join('') || '<li>No guidelines marked as available</li>'}
+            </ul>
+        </div>
+        
+        <div class="status-section unavailable">
+            <h4>❌ Not Available Guidelines:</h4>
+            <ul class="detail-list">
+                ${details.guidelines.notAvailable.map(item => `<li>${item}</li>`).join('') || '<li>No guidelines marked as not available</li>'}
+            </ul>
+        </div>
         
         <h4>Waste Management Processes:</h4>
         <table>
@@ -1785,6 +2326,24 @@
                 printWindow.print();
             };
         }
+
+        // Initialize real-time scoring
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up event listeners for input fields to update scoring in real-time
+            ['cdGap', 'cvsGap', 'massFlowGap'].forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', updateRealTimeScoring);
+                }
+            });
+            
+            ['groundPermeability', 'cctvCameras', 'auditCompletion', 'serviceSatisfaction', 'priceSatisfaction', 'policyAwareness'].forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('change', updateRealTimeScoring);
+                }
+            });
+        });
     </script>
 </body>
 </html>
